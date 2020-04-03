@@ -178,3 +178,101 @@ Example response:
     "message": "Kid deleted successfully!"
 }
 
+
+
+# ACTIVITIES LIST
+## GET: /api/activities
+
+https://activkid.herokuapp.com/api/activities
+
+## RESTRICTED: REQUIRES HEADER
+
+Will retrieve a list of ALL kids.
+
+[
+    {
+        "id": 1,
+        "parents_id": 1,
+        "name": "Rake leaves front yard",
+        "points": 10,
+        "created_on": "2020-04-03 18:06:31"
+    },
+    {
+        "id": 2,
+        "parents_id": 1,
+        "name": "Vacuum",
+        "points": 20,
+        "created_on": "2020-04-03 18:06:53"
+    },
+    {
+        "id": 3,
+        "parents_id": 1,
+        "name": "Feed Dogs",
+        "points": 30,
+        "created_on": "2020-04-03 18:07:03"
+    },
+    {
+        "id": 4,
+        "parents_id": 1,
+        "name": "Take out Trash",
+        "points": 40,
+        "created_on": "2020-04-03 18:07:19"
+    }
+]
+
+
+# ACTIVITIES LIST
+## POST: /api/activites
+
+https://activkid.herokuapp.com/api/activities
+
+## RESTRICTED: REQUIRES HEADER
+
+Will add a row to the kids table.
+
+example data:
+{
+    "parents_id": 1,
+    "name": "Rake leaves front yard",
+    "points": 10
+}
+
+will return:
+{
+    "id": 1,
+    "parents_id": 1,
+    "name": "Rake leaves front yard",
+    "points": 10,
+    "created_on": "2020-04-03 18:06:31"
+}
+
+
+# ACTIVITIES LIST
+## PUT: /api/activities/:id
+
+https://activkid.herokuapp.com/api/activitites/:id
+
+## RESTRICTED: REQUIRES HEADER
+
+Will edit or update an individual row on the Activities table.
+
+{
+    "name": "Wash the Car",
+    "points": 100
+}
+
+
+# ACTIVITIES LIST
+## DELETE: /api/activities/:id
+
+https://activkid.herokuapp.com/api/activities/:id
+
+## RESTRICTED: REQUIRES HEADER
+
+Will Delete an individual child from the Activities table.
+
+Example response:
+
+{
+    "message": "Activity deleted successfully!"
+}

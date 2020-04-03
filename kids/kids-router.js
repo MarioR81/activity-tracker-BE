@@ -30,7 +30,6 @@ router.post('/', restricted, (req, res) => {
     });
   });
 
-
 // PUT() edits row for Kids table
 router.put('/:id', restricted, (req, res) => {
     const { id } = req.params;
