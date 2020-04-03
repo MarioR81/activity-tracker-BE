@@ -4,6 +4,7 @@ const express = require('express');
 
 const Kids = require('./kids-model.js');
 
+// GET() gives Kids full table
 router.get('/', (req, res) => {
   Kids.find()
   .then(kids => {
@@ -14,9 +15,10 @@ router.get('/', (req, res) => {
   });
 });
 
+// POST() adds row to Kids table
 router.post('/', (req, res) => {
     const kidData = req.body;
-    console.log(kidData)
+    // console.log(kidData)
     Kids.add(kidData)
     .then(kid => {
         
@@ -24,6 +26,46 @@ router.post('/', (req, res) => {
     })
     .catch (err => {
       res.status(500).json({ message: 'Failed to create new kid' });
+    });
+  });
+
+
+  // PUT() edits row for Kids table
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+  
+    Kids.findById(id)
+    .then(kid => {
+      if (kid) {
+        Kids.update(changes, id)
+        .then(updatedKid => {
+          res.status(200).json(updatedKid);
+        });
+      } else {
+        res.status(404).json({ message: 'Could not find kid with given id' });
+      }
+    })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed to update kid' });
+    });
+  });
+
+
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    
+    Kids.remove(id)
+    .then(deleted => {
+        console.log(deleted)
+      if (deleted) {
+        res.json({ removed: deleted, message: 'Kid deleted successfully!'});
+      } else {
+        res.status(404).json({ message: 'Could not find kid with given id' });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to delete kid' });
     });
   });
 

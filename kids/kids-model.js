@@ -3,10 +3,8 @@ const db = require('../database/dbConfig');
 module.exports = {
     find,
     findById,
-    // update,
-    // findSteps,
-    // remove,
-    // addStep,
+    update,
+    remove,
     add,
 }
 
@@ -21,7 +19,21 @@ function findById(id) {
     .first();
 }
 
-// Adds a row to Kids table
+function update(changes, id) {
+    return db("kids")
+    .where({ id })
+    .update(changes)
+    .then(() => {
+        return findById(id);
+    })
+}
+
+function remove(id) {
+    return db("kids")
+        .where("id", id)
+        .del();
+}
+
 function add(kid) {
     return db('kids')
         .insert(kid)
