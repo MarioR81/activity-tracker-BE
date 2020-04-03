@@ -228,7 +228,7 @@ https://activkid.herokuapp.com/api/activities
 
 ## RESTRICTED: REQUIRES HEADER
 
-Will add a row to the kids table.
+Will add a row to the Activities table.
 
 example data:
 {
