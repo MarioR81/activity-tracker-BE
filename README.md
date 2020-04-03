@@ -79,3 +79,102 @@ Will retrieve a list of ALL users.
         "email": "userthree@email.com"
     }
 ]
+
+
+# KIDS LIST
+## GET: /api/kids
+
+https://activkid.herokuapp.com/api/kids
+
+## RESTRICTED: REQUIRES HEADER
+
+Will retrieve a list of ALL kids.
+
+[
+    {
+        "id": 1,
+        "name": "kid 1",
+        "points": 10,
+        "created_on": "2020-04-03 04:54:36",
+        "rewards_array": "[{test1}, {test2}, {test3}]",
+        "parents_id": 1
+    },
+    {
+        "id": 2,
+        "name": "kid 2",
+        "points": 50,
+        "created_on": "2020-04-03 04:54:41",
+        "rewards_array": "[{test1}, {test2}, {test3}]",
+        "parents_id": 1
+    },
+    {
+        "id": 4,
+        "name": "kid 3",
+        "points": 55,
+        "created_on": "2020-04-03 05:16:07",
+        "rewards_array": null,
+        "parents_id": 1
+    }
+]
+
+
+
+# KIDS LIST
+## POST: /api/kids
+
+https://activkid.herokuapp.com/api/kids
+
+## RESTRICTED: REQUIRES HEADER
+
+Will add a row to the kids table.
+
+Example data:
+{
+    "name": "kid 4",
+    "points": 40,
+    "parents_id": 1
+}
+
+will RETURN:
+{
+    "id": 4,
+    "name": "kid 4",
+    "points": 40,
+    "created_on": "2020-04-03 05:30:09",
+    "rewards_array": null,
+    "parents_id": 1
+}
+
+
+# KIDS LIST
+## PUT: /api/kids/:id
+
+https://activkid.herokuapp.com/api/kids/:id
+
+## RESTRICTED: REQUIRES HEADER
+
+Will edit or update an individual row on the kids table.
+
+{
+    "name": "kid 9",
+    "points": 90,
+    "rewards_array": "[{test1}, {test2}, {test3}]"
+}
+
+
+# KIDS LIST
+## DELETE: /api/kids/:id
+
+https://activkid.herokuapp.com/api/kids/:id
+
+## RESTRICTED: REQUIRES HEADER
+
+Will Delete an individual child from the kids table.
+
+Example response:
+
+{
+    "removed": 1,
+    "message": "Kid deleted successfully!"
+}
+

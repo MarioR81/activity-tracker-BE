@@ -1,11 +1,12 @@
 const router = require('express').Router();
 
 const express = require('express');
+const restricted = require('../auth/restrited-middleware.js');
 
 const Kids = require('./kids-model.js');
 
 // GET() gives Kids full table
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
   Kids.find()
   .then(kids => {
     res.json(kids);
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 // POST() adds row to Kids table
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
     const kidData = req.body;
     // console.log(kidData)
     Kids.add(kidData)
@@ -30,8 +31,8 @@ router.post('/', (req, res) => {
   });
 
 
-  // PUT() edits row for Kids table
-router.put('/:id', (req, res) => {
+// PUT() edits row for Kids table
+router.put('/:id', restricted, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
   
@@ -51,13 +52,13 @@ router.put('/:id', (req, res) => {
     });
   });
 
-
-router.delete('/:id', (req, res) => {
+// DELETE() deletes kid selected 
+router.delete('/:id', restricted, (req, res) => {
     const { id } = req.params;
     
     Kids.remove(id)
     .then(deleted => {
-        console.log(deleted)
+        // console.log(deleted)
       if (deleted) {
         res.json({ removed: deleted, message: 'Kid deleted successfully!'});
       } else {
