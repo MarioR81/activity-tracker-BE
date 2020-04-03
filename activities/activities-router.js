@@ -1,12 +1,12 @@
 const router = require('express').Router();
 
 const express = require('express');
-// const restricted = require('../auth/restrited-middleware.js');
+const restricted = require('../auth/restrited-middleware.js');
 
 const Activities = require('./activities-model.js');
 
 // GET() returns the whole Activities table
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     Activities.find()
     .then(activities => {
       res.json(activities);
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 
 // POST() adds row to Activities table
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
   const activityData = req.body;
   // console.log(kidData)
   Activities.add(activityData)
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT() edits row for Activities table
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
   
@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
 
 
 // DELETE() deletes Activity selected 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
   
   Activities.remove(id)
